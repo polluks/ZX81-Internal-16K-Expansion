@@ -1,5 +1,5 @@
 # ZX81-Internal-16K-Expansion 'No Wobbly Edition'
-This little PCB is a 'quick and dirty, no wobbly' 16K internal memory expansion for the Sinclair ZX81. The ZX81 is a very simple computer and only has 1KB of memory, which could be expanded to 16KB by using a RAMpack. This had to be connected to the expansion port on the back of the computer. It is this RAMpack that was notorious for the infamous 'RAMpack wobble', a certain movement of the computer would cause a crash, resulting in losing work, etc. 
+This little PCB is a 'quick and dirty, no wobbly' 16K internal memory expansion for the Sinclair ZX81. The ZX81 is a very simple computer and only has 1KB of memory, which could be expanded to 16KB by using a RAMpack. This had to be connected to the expansion port on the back of the computer. It is this RAMpack that was notorious for the infamous 'RAMpack wobble', a certain movement of the computer would cause a crash, resulting in losing work, etc.
 
 That is where the 'No Wobbly Edition' comes in, it replaces the internal 1KB SRAM with a 32KB SRAM, of which 16KB is usable. All of the necessary re-routing of address lines is done on the PCB, there is no need to cut tracks on the ZX81 PCB or bending of pins, etc. It is easily reversible by inserting a 6116 SRAM in the socket.
 
@@ -38,7 +38,7 @@ PRINT PEEK 16388+256*PEEK 16389
 Result should be 32768.
 
 # ZX81 - Internal-32K-Expansion 'vLA81 Edition'
-Rev. B of the memory expansion. The vLA81 is an awesome replacement for the ZX81 ULA. It has all the needed logic in it's CPLD to do all the decoding to give the ZX81 the full 32KB. It is very similar to the 16KB expansion, it only needs an extra Address Line (A14) to make the magic happen. 
+Rev. B of the memory expansion. The vLA81 is an awesome replacement for the ZX81 ULA. It has all the needed logic in its CPLD to do all the decoding to give the ZX81 the full 32KB. It is very similar to the 16KB expansion, it only needs an extra Address Line (A14) to make the magic happen. 
 
 # The PCB (Rev. B):
 ![alt text](https://github.com/redhawk668/ZX81-Internal-16K-Expansion/blob/main/Rev.%20B%20-%20vLA81/ZX81%20Intern%2032K.png)
@@ -51,7 +51,7 @@ Same as the 16KB expansion. It only needs one more Address Line connected.
 
 Address Line A14 must be soldered to the cathode of D7, the rest is the same as Rev. A.
 
-Connect pin 3 of the Z80 (A13) to pin 35 of the vLA81. Normally this is reserved for the clock signal from the resonator. The vLA81 has it's own clock crystal, so this pin has another purpose.
+Connect pin 3 of the Z80 (A13) to pin 35 of the vLA81. Normally this is reserved for the clock signal from the resonator. The vLA81 has its own clock crystal, so this pin has another purpose.
 
 # Memory configurations:
 - Both dipswitches USR0/USR1 to off: 16KB
@@ -59,22 +59,14 @@ Connect pin 3 of the Z80 (A13) to pin 35 of the vLA81. Normally this is reserved
 - Dipswitch USR0 to off and USR1 to on: 8K - 40K, provides lower 32K memory map for WRX hires programs
 - Both dipswitches to on, provides soft config.
 
-To activate the full 32KB, the ZX81 has to be told to raise it's RAMTOP, normally it will only see the first 16KB.
+To activate the full 32KB, the ZX81 has to be told to raise its RAMTOP, normally it will only see the first 16KB.
 
 Run the following commands:
 
-POKE 16389,255 followed by a NEW command. This will raise the RAMTOP and the ZX81 will now be able to use the full 32KB.
+`POKE 16389,255` followed by a `NEW` command. This will raise the RAMTOP and the ZX81 will now be able to use the full 32KB.
 
 Depending on the dipswitches, the command:
 
-PRINT PEEK 16388+256*PEEK 16389
+`PRINT PEEK 16388+256*PEEK 16389`
 
 Will result in 49152 or 40960.
-
-
-
-
-
-
-
-
